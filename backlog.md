@@ -3,7 +3,7 @@
 ## FASE 1: Configuração do Projeto e Banco de Dados
 - [ ] **Task 1.1:** Inicializar projeto Next.js (App Router) com TypeScript, Tailwind CSS e Lucide Icons.
 - [ ] **Task 1.2:** Configurar Supabase Client e variáveis de ambiente públicas.
-- [ ] **Task 1.3:** Executar script `schema.sql` no Supabase, validando funções RPC, triggers e RLS sem erros de recursão.
+- [ ] **Task 1.3:** Executar script `schema.sql` no Supabase, validando funções RPC, triggers, restrição `chk_registro_ponto_obrigatorio` e RLS sem erros de recursão.
 
 ## FASE 2: Autenticação e Rotas Protegidas
 - [ ] **Task 2.1:** Criar tela de Login (Layout limpo, sem emojis, suporte a feedback por toast).
