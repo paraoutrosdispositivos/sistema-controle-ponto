@@ -45,7 +45,10 @@ CREATE TABLE public.solicitacoes_correcao (
     analisado_em TIMESTAMPTZ NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 
-    CONSTRAINT chk_nao_auto_aprovar CHECK (usuario_id <> analisado_por_id)
+    CONSTRAINT chk_nao_auto_aprovar CHECK (usuario_id <> analisado_por_id),
+    CONSTRAINT chk_registro_ponto_obrigatorio CHECK (
+        (tipo_solicitacao = 'INCLUSAO') OR (registro_ponto_id IS NOT NULL)
+    )
 );
 
 -- 5. ÍNDICES
