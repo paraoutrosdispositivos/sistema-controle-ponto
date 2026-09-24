@@ -1,7 +1,8 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { LogoutButton } from '@/components/LogoutButton'
-import { Clock, Shield, ArrowRight, CheckCircle2 } from 'lucide-react'
+import { DashboardFuncionario } from '@/components/DashboardFuncionario'
+import { Clock, Shield, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
 export default async function Home() {
@@ -36,7 +37,7 @@ export default async function Home() {
                 Controle de Ponto
               </span>
               <span className="text-xs text-zinc-500 font-normal">
-                Visao do Colaborador
+                Painel do Colaborador
               </span>
             </div>
           </div>
@@ -68,17 +69,8 @@ export default async function Home() {
         </div>
       </header>
 
-      <main className="flex-1 max-w-6xl w-full mx-auto px-6 py-10 space-y-6">
-        <div className="p-6 bg-white border border-zinc-200 rounded-xl shadow-sm space-y-4">
-          <div className="flex items-center gap-2 text-zinc-900 font-semibold">
-            <CheckCircle2 className="w-5 h-5 text-zinc-700" />
-            <h2>Sessao Autenticada</h2>
-          </div>
-          <p className="text-sm text-zinc-600 leading-relaxed">
-            Voce esta autenticado no sistema com o perfil <strong className="text-zinc-900">{profile?.perfil || 'FUNCIONARIO'}</strong>.
-            A FASE 2 (Autenticacao e Rotas Protegidas) esta ativa. As funcionalidades de registro de ponto e espelho de ponto serao implementadas nas proximas fases.
-          </p>
-        </div>
+      <main className="flex-1 max-w-6xl w-full mx-auto px-6 py-8">
+        <DashboardFuncionario userId={user.id} />
       </main>
 
       <footer className="border-t border-zinc-200 bg-white py-4 px-6 text-center text-xs text-zinc-500">
