@@ -6,9 +6,9 @@
 - [ ] **Task 1.3:** Executar script `schema.sql` no Supabase, validando funções RPC, triggers, restrição `chk_registro_ponto_obrigatorio` e RLS sem erros de recursão.
 
 ## FASE 2: Autenticação e Rotas Protegidas
-- [ ] **Task 2.1:** Criar tela de Login (Layout limpo, sem emojis, suporte a feedback por toast).
-- [ ] **Task 2.2:** Configurar middleware de autenticação e proteção de rotas por perfil (`FUNCIONARIO` / `GESTOR`).
-- [ ] **Task 2.3:** Implementar encerramento de sessão (Logout).
+- [x] **Task 2.1:** Criar tela de Login (Layout limpo, sem emojis, suporte a feedback por toast).
+- [x] **Task 2.2:** Configurar middleware de autenticação e proteção de rotas por perfil (`FUNCIONARIO` / `GESTOR`).
+- [x] **Task 2.3:** Implementar encerramento de sessão (Logout).
 
 ## FASE 3: Registro de Ponto (Core e Concorrência)
 - [ ] **Task 3.1:** Implementar o botão de bate-ponto consumindo a função RPC `bater_ponto`.
