@@ -1,7 +1,7 @@
 # Backlog de Desenvolvimento — Controle de Ponto
 
 ## FASE 1: Configuração do Projeto e Banco de Dados
-- [ ] **Task 1.1:** Inicializar projeto Next.js (App Router) com TypeScript, Tailwind CSS e Lucide Icons.
+- [x] **Task 1.1:** Inicializar projeto Next.js (App Router) com TypeScript, Tailwind CSS e Lucide Icons.
 - [ ] **Task 1.2:** Configurar Supabase Client e variáveis de ambiente públicas.
 - [ ] **Task 1.3:** Executar script `schema.sql` no Supabase, validando funções RPC, triggers, restrição `chk_registro_ponto_obrigatorio` e RLS sem erros de recursão.
 
