@@ -11,13 +11,13 @@
 - [x] **Task 2.3:** Implementar encerramento de sessão (Logout).
 
 ## FASE 3: Registro de Ponto (Core e Concorrência)
-- [ ] **Task 3.1:** Implementar o botão de bate-ponto consumindo a função RPC `bater_ponto`.
-- [ ] **Task 3.2:** Adicionar desabilitação de botão no frontend durante o carregamento para reforço visual contra clique duplo.
-- [ ] **Task 3.3:** Exibir confirmação e horário gravado via retorno do banco.
+- [x] **Task 3.1:** Implementar o botão de bate-ponto consumindo a função RPC `bater_ponto`.
+- [x] **Task 3.2:** Adicionar desabilitação de botão no frontend durante o carregamento para reforço visual contra clique duplo.
+- [x] **Task 3.3:** Exibir confirmação e horário gravado via retorno do banco.
 
 ## FASE 4: Espelho de Ponto Individual e Soluções de Ajuste
-- [ ] **Task 4.1:** Construir visualização de espelho de ponto filtrando marcações ativas (`desconsiderado = FALSE`).
-- [ ] **Task 4.2:** Implementar lógica de cálculo de duração por pares (`ENTRADA` $\rightarrow$ `SAIDA`) e sinalização de marcações "Em aberto".
+- [x] **Task 4.1:** Construir visualização de espelho de ponto filtrando marcações ativas (`desconsiderado = FALSE`).
+- [x] **Task 4.2:** Implementar lógica de cálculo de duração por pares (`ENTRADA` $\rightarrow$ `SAIDA`) e sinalização de marcações "Em aberto".
 - [ ] **Task 4.3:** Criar modal para abertura de solicitações de correção (Inclusão, Alteração e Exclusão) e permitir cancelamento de solicitações `PENDENTES`.
 
 ## FASE 5: Painel do Gestor (Aprovações e Usuários)
