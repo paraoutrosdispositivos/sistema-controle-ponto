@@ -1,26 +1,67 @@
-import { redirect } from 'next/navigation'
-import { createClient } from '@/lib/supabase/server'
+'use client'
+
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { createClient } from '@/lib/supabase/client'
 import { LogoutButton } from '@/components/LogoutButton'
 import { DashboardFuncionario } from '@/components/DashboardFuncionario'
-import { Clock, Shield, ArrowRight } from 'lucide-react'
+import { Clock, Shield, ArrowRight, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 
-export default async function Home() {
-  const supabase = await createClient()
+interface UserProfile {
+  nome: string | null
+  perfil: string | null
+  ativo: boolean | null
+}
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+export default function Home() {
+  const router = useRouter()
+  const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState<{ id: string; email?: string } | null>(null)
+  const [profile, setProfile] = useState<UserProfile | null>(null)
 
-  if (!user) {
-    redirect('/login')
+  useEffect(() => {
+    async function checkAuth() {
+      const supabase = createClient()
+      const {
+        data: { user: currentUser },
+      } = await supabase.auth.getUser()
+
+      if (!currentUser) {
+        router.push('/login')
+        return
+      }
+
+      setUser({ id: currentUser.id, email: currentUser.email })
+
+      const { data: userProfile } = await supabase
+        .from('usuarios')
+        .select('nome, perfil, ativo')
+        .eq('id', currentUser.id)
+        .single()
+
+      if (userProfile && !userProfile.ativo) {
+        router.push('/login?error=inativo')
+        return
+      }
+
+      setProfile(userProfile as UserProfile)
+      setLoading(false)
+    }
+
+    checkAuth()
+  }, [router])
+
+  if (loading || !user) {
+    return (
+      <div className="min-h-screen bg-zinc-50 flex flex-col items-center justify-center p-4">
+        <div className="flex items-center gap-2 text-zinc-600 font-medium text-sm">
+          <Loader2 className="w-5 h-5 animate-spin" />
+          <span>Carregando dados do usuario...</span>
+        </div>
+      </div>
+    )
   }
-
-  const { data: profile } = await supabase
-    .from('usuarios')
-    .select('nome, perfil, ativo')
-    .eq('id', user.id)
-    .single()
 
   const isGestor = profile?.perfil === 'GESTOR'
 
