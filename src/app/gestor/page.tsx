@@ -1,10 +1,10 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { LogoutButton } from '@/components/LogoutButton'
-import { Clock, Shield, ArrowRight, CheckCircle2 } from 'lucide-react'
+import { Shield, Clock, ArrowLeft, CheckCircle2 } from 'lucide-react'
 import Link from 'next/link'
 
-export default async function Home() {
+export default async function GestorPage() {
   const supabase = await createClient()
 
   const {
@@ -21,7 +21,9 @@ export default async function Home() {
     .eq('id', user.id)
     .single()
 
-  const isGestor = profile?.perfil === 'GESTOR'
+  if (profile?.perfil !== 'GESTOR') {
+    redirect('/')
+  }
 
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-900 flex flex-col">
@@ -29,29 +31,26 @@ export default async function Home() {
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-zinc-900 text-white rounded-lg">
-              <Clock className="w-5 h-5" />
+              <Shield className="w-5 h-5" />
             </div>
             <div>
               <span className="font-semibold text-lg tracking-tight block leading-none">
-                Controle de Ponto
+                Painel do Gestor
               </span>
               <span className="text-xs text-zinc-500 font-normal">
-                Visao do Colaborador
+                Area Administrativa de Gestao
               </span>
             </div>
           </div>
 
           <div className="flex items-center gap-4">
-            {isGestor && (
-              <Link
-                href="/gestor"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-zinc-900 text-white hover:bg-zinc-800 rounded-lg transition-colors"
-              >
-                <Shield className="w-3.5 h-3.5" />
-                <span>Painel do Gestor</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            )}
+            <Link
+              href="/"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-zinc-100 text-zinc-700 hover:bg-zinc-200 rounded-lg border border-zinc-200 transition-colors"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Visao do Funcionario</span>
+            </Link>
 
             <div className="flex items-center gap-3 border-l border-zinc-200 pl-4">
               <div className="flex flex-col text-right">
@@ -59,7 +58,7 @@ export default async function Home() {
                   {profile?.nome || user.email}
                 </span>
                 <span className="text-xs text-zinc-500 uppercase tracking-wider font-semibold">
-                  {profile?.perfil || 'FUNCIONARIO'}
+                  GESTOR
                 </span>
               </div>
               <LogoutButton />
@@ -72,11 +71,11 @@ export default async function Home() {
         <div className="p-6 bg-white border border-zinc-200 rounded-xl shadow-sm space-y-4">
           <div className="flex items-center gap-2 text-zinc-900 font-semibold">
             <CheckCircle2 className="w-5 h-5 text-zinc-700" />
-            <h2>Sessao Autenticada</h2>
+            <h2>Area Exclusiva do Gestor</h2>
           </div>
           <p className="text-sm text-zinc-600 leading-relaxed">
-            Voce esta autenticado no sistema com o perfil <strong className="text-zinc-900">{profile?.perfil || 'FUNCIONARIO'}</strong>.
-            A FASE 2 (Autenticacao e Rotas Protegidas) esta ativa. As funcionalidades de registro de ponto e espelho de ponto serao implementadas nas proximas fases.
+            Voce possui acesso administrativo ao Painel do Gestor.
+            As funcionalidades de gestao, aprovacao de solicitacoes de ajuste e cadastro de colaboradores estarao disponiveis na FASE 5.
           </p>
         </div>
       </main>
